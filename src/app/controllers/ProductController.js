@@ -25,20 +25,28 @@ module.exports = {
             }
         }
 
+        // Pedido ao banco de dados
         let results = await Product.create(req.body)
         const productId = results.rows[0].id
 
-        return res.redirect(`products/${productId}`, { productId })
+        results = await Category.all()
+        const categories = results.rows
+
+        return res.render("products/create.njk", { productId, categories })
     },
     async edit(req, res) {
+        // Pedido ao banco de dados
         let results = await Product.find(req.params.id)
         const product = results.rows[0]
+        // console.log(product)
 
+        // Identificando campos preenchidos da página
         if (!product) return res.send("Product not found!!!")
 
         product.old_price = formatPrice(product.old_price)
         product.price = formatPrice(product.price)
-
+        
+        // Pedido ao banco de dados
         results = await Category.all()
         const categories = results.rows
 
