@@ -2,7 +2,7 @@
 
 {% block content %}
     <section class="container form">
-        <form class="card" method="POST" action="/products?_method=PUT">
+        <form class="card" method="POST" action="/products?_method=PUT" enctype="multipart/form-data">
 
             <div class="header">
                 <h3>Editar Produto</h3>
@@ -30,6 +30,7 @@
         formDelete.addEventListener("submit", function() {
             const confirmation = confirm("Deseja Deletar?")
             if(!confirmation) {
+                // Bloqueando a solicitação do usuário
                 event.preventDefault()
             }
         })
