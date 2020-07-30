@@ -10,6 +10,7 @@ routes.get('/', function(req, res) {
 
 
 routes.get('/products/create', ProductController.create) // Rota -> Pag. Create||Listar
+routes.get('/products/:id', ProductController.show) // Rota -> Pag. Mostrar o Produto
 routes.get('/products/:id/edit', ProductController.edit) // Rota -> Pag. Edit Prod
 
 routes.post('/products', multer.array("photos", 6), ProductController.post) // Rota -> Pag. Save Prod
